@@ -13,16 +13,18 @@
           </ion-list>
         </ion-content>
       </ion-menu>
-      <ion-router-outlet id="main-content"></ion-router-outlet>
+      <TableItem id="main-content"></TableItem>
     </ion-split-pane>
   </ion-app>
 </template>
 
 <script lang="ts">
-import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
+import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonSplitPane } from '@ionic/vue';
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { HTTP } from './js/http-common';
 import { chevronForwardOutline } from 'ionicons/icons';
+import TableItem from './views/Table.vue';
 
 export default defineComponent({
   name: 'App',
@@ -35,26 +37,34 @@ export default defineComponent({
     IonList, 
     IonMenu, 
     IonMenuToggle, 
-    IonRouterOutlet, 
+    TableItem, 
     IonSplitPane,
+  },
+  data(){
+    return{
+      tableData: []
+      }
   },
   setup() {
     const selectedIndex = ref(0);
     const appPages = [
       {
         title: 'Todos',
+        code: "all",
         url: '/folder/Todos',
         iosIcon: chevronForwardOutline,
         mdIcon: chevronForwardOutline
       },
       {
         title: 'Libres',
+        code: "free",
         url: '/folder/Libres',
         iosIcon: chevronForwardOutline,
         mdIcon: chevronForwardOutline
       },
       {
         title: 'Pendientes',
+        code: "pend",
         url: '/folder/Pendientes',
         iosIcon: chevronForwardOutline,
         mdIcon: chevronForwardOutline
@@ -72,6 +82,34 @@ export default defineComponent({
       appPages, 
       chevronForwardOutline,
       isSelected: (url: string) => url === route.path ? 'selected' : ''
+    }
+  },
+  methods: {
+    getTable: function (code) {
+          HTTP.post('/api/mesas', {
+            id: "1",
+            code: this.appPages[code]
+          })
+          .then(response => {
+            for (const key in response.data) {
+              if (Object.hasOwnProperty.call(response.data, key)) {
+                const element = response.data[key];
+                this.tableData.push({
+                  webId:element.IdTipoPlato,
+                  name:element.NombreTipo,
+                  code:"00"+(parseInt(key)+1)
+                })
+              }
+            }
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+        },
+  },
+  watch:{
+    selectedIndex: function(value){
+      this.getTable(value);
     }
   }
 });
