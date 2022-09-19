@@ -21,6 +21,7 @@
     "@ionic/vue-router": "^6.0.0",
     "axios": "^0.27.2",
     "core-js": "^3.6.5",
+    "express": "^4.18.1",
     "ionicons": "^6.0.3",
     "serve-static": "^1.15.0",
     "vue": "^3.2.21",
