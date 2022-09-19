@@ -2,9 +2,11 @@
   "name": "admin-menu-restaurant",
   "version": "0.0.1",
   "private": true,
+  "vetur.validation.template": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "start": "node server.js",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
