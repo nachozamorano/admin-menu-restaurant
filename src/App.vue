@@ -1,8 +1,18 @@
 <template>
   <ion-app>
-    <ion-split-pane content-id="main-content">
+    <ion-page id="main-content">
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-menu-button class="display-block"></ion-menu-button>
+            </ion-buttons>
+            <ion-title>{{appPages[selectedIndex].title}}</ion-title>
+          </ion-toolbar>
+      </ion-header>
+    </ion-page>
+    <ion-content class="ion-padding">
+      <ion-split-pane content-id="main-content">
       <ion-menu content-id="main-content" type="overlay">
-        <ion-content>
           <ion-list id="inbox-list">
             <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
               <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
@@ -11,15 +21,17 @@
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
-        </ion-content>
       </ion-menu>
-      <TableItem id="main-content"></TableItem>
+      <ion-list>
+        <TableItem id="main-content" v-for="(data, pos) in tableData" :key="pos" :table-data="data"></TableItem>
+      </ion-list>
     </ion-split-pane>
+    </ion-content>
   </ion-app>
 </template>
 
 <script lang="ts">
-import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonSplitPane } from '@ionic/vue';
+import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonSplitPane, IonHeader, IonButtons, IonMenuButton, IonTitle} from '@ionic/vue';
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { HTTP } from './js/http-common';
@@ -39,9 +51,14 @@ export default defineComponent({
     IonMenuToggle, 
     TableItem, 
     IonSplitPane,
+    IonHeader,
+    IonButtons,
+    IonMenuButton,
+    IonTitle
   },
   data(){
     return{
+      errors:[],
       tableData: []
       }
   },
@@ -63,9 +80,9 @@ export default defineComponent({
         mdIcon: chevronForwardOutline
       },
       {
-        title: 'Pendientes',
+        title: 'Ocupados',
         code: "pend",
-        url: '/folder/Pendientes',
+        url: '/folder/Ocupados',
         iosIcon: chevronForwardOutline,
         mdIcon: chevronForwardOutline
       }
@@ -84,20 +101,25 @@ export default defineComponent({
       isSelected: (url: string) => url === route.path ? 'selected' : ''
     }
   },
+  created: function(){
+    this.getTable(this.selectedIndex);
+  },
   methods: {
     getTable: function (code) {
+          this.tableData=[];
           HTTP.post('/api/mesas', {
             id: "1",
-            code: this.appPages[code]
+            code: this.appPages[code].code
           })
           .then(response => {
             for (const key in response.data) {
               if (Object.hasOwnProperty.call(response.data, key)) {
                 const element = response.data[key];
                 this.tableData.push({
-                  webId:element.IdTipoPlato,
-                  name:element.NombreTipo,
-                  code:"00"+(parseInt(key)+1)
+                  webId:element.IdMesa,
+                  CantPersonas:element.cantPersona,
+                  numero:element.numero,
+                  nombreEstado:element.nombreEstado
                 })
               }
             }
