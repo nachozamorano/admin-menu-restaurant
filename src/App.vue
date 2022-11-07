@@ -6,7 +6,8 @@
             <ion-buttons slot="start">
               <ion-menu-button class="display-block"></ion-menu-button>
             </ion-buttons>
-            <ion-title>{{appPages[selectedIndex].title}}</ion-title>
+            <ion-title class="float-left">{{appPages[selectedIndex].title}}</ion-title>
+            <ion-icon name="qr-code-outline" class="float-right"></ion-icon>
           </ion-toolbar>
       </ion-header>
     </ion-page>
