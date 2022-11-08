@@ -32,7 +32,7 @@
   </template>
   
   <script lang="ts">
-  import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonSplitPane, IonHeader, IonButtons, IonMenuButton, IonTitle} from '@ionic/vue'; 
+  import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonSplitPane, IonHeader, IonButtons, IonMenuButton, IonTitle, IonToolbar} from '@ionic/vue'; 
   import { defineComponent, ref } from 'vue';
   import { QrcodeStream } from 'vue3-qrcode-reader'
   import { useRoute } from 'vue-router';
@@ -57,6 +57,7 @@
       IonButtons,
       IonMenuButton,
       IonTitle,
+      IonToolbar,
       QrcodeStream
     },
     data(){
