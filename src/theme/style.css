@@ -144,3 +144,20 @@ ion-menu ion-content {
   .display-block{
     display: block !important;
   }
+  .display-inline-block{
+    display: inline-block;
+  }
+  .mr-2{
+    margin-right: 8px;
+  }
+  .mr-3{
+    margin-right: 16px;
+  }
+  .w-100{
+    width: 100%;
+  }
+  .center-vertical{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
