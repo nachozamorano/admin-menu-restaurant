@@ -24,14 +24,13 @@ export default defineComponent({
     return{
       step:'main',
       decodedString:"",
-      idRestaurant:"",
+      idRestaurant:"1",
       numTable:""
       }
   },
   methods:{
     parseJson:function(){
       var dataBase = JSON.parse(this.decodedString.split("/dataBase/")[1]);
-      this.idRestaurant = dataBase[0].idRestaurant;
       this.numTable = dataBase[0].numTable;
       return JSON.parse(this.decodedString.split("/dataBase/")[0]);
     }

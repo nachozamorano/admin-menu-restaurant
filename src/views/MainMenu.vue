@@ -152,7 +152,7 @@
         getTable: function (code) {
             this.tableData=[];
             HTTP.post('/api/mesa', {
-              id: "1",
+              id: this.idRestaurant,
               code: this.appPages[code].code
             })
             .then(response => {

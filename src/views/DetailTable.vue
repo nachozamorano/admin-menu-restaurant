@@ -26,6 +26,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { IonLabel, IonImg, IonBadge, IonToolbar, IonHeader, IonContent, IonItemDivider, IonList, IonTitle, IonButton } from '@ionic/vue';
+import { HTTP } from '../js/http-common';
 export default defineComponent({
     name: 'detail-table',
     components: {
@@ -63,6 +64,27 @@ export default defineComponent({
             this.$root.step = "main";
          },
          acceptClick:function(){
+            HTTP.post('/api/actualizarEstado', {
+                id: this.idRestaurant,
+                num: this.numTable,
+                status: "3"
+            })
+            .then(response => {
+              for (const key in response.data) {
+                if (Object.hasOwnProperty.call(response.data, key)) {
+                  const element = response.data[key];
+                  this.tableData.push({
+                    webId:element.IdMesa,
+                    CantPersonas:element.cantPersona,
+                    numero:element.numero,
+                    nombreEstado:element.nombreEstado
+                  })
+                }
+              }
+            })
+            .catch(e => {
+              this.errors.push(e)
+            })
             this.$root.step = "main";
          }
     }
