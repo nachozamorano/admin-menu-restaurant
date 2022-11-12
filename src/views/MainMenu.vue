@@ -1,5 +1,4 @@
 <template>
-    <ion-app>
       <ion-page id="main-content">
           <ion-header>
             <ion-toolbar>
@@ -28,11 +27,10 @@
         <qrcode-stream v-else @init="onInit"></qrcode-stream>
       </ion-split-pane>
       </ion-content>
-    </ion-app>
   </template>
   
   <script lang="ts">
-  import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonSplitPane, IonHeader, IonButtons, IonMenuButton, IonTitle, IonToolbar} from '@ionic/vue'; 
+  import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonSplitPane, IonHeader, IonButtons, IonMenuButton, IonTitle, IonToolbar} from '@ionic/vue'; 
   import { defineComponent, ref } from 'vue';
   import { QrcodeStream } from 'vue3-qrcode-reader'
   import { useRoute } from 'vue-router';
@@ -43,7 +41,6 @@
   export default defineComponent({
     name: 'App',
     components: {
-      IonApp, 
       IonContent, 
       IonIcon, 
       IonItem, 
@@ -65,7 +62,6 @@
         errors:[],
         tableData: [],
         error: '',
-        decodedString: '',
         torch: false,
         }
     },
@@ -149,8 +145,9 @@
             }
         },
         onDecode(decodedString) {
-            this.decodedString = decodedString;
-            //window.location.replace(decodedString)
+            this.$root.decodedString = decodedString;
+            this.$root.step = "detail";
+            
         },
         getTable: function (code) {
             this.tableData=[];

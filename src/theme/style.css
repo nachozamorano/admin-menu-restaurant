@@ -161,3 +161,50 @@ ion-menu ion-content {
     justify-content: center;
     display: flex;
   }
+  .title-sub{
+    font-size: 22px !important;
+    font-weight: 799 !important;
+    color:#1b1b1b;
+    white-space: break-spaces;
+  }
+  .text-description{
+    display: table-cell;
+    font-size: 15px;
+    white-space: break-spaces;
+  }
+  .size-img{
+    max-width: 150px;
+    max-height: 150px;
+  }
+  ion-img.size-img::part(image) {
+    border-radius: 10px;
+  }
+  .title-step{
+    font-weight: 900;
+    font-size: 30px;
+  }
+  .ion-label-list{
+    min-width: 210px;
+    max-width: 210px;
+  }
+  .size-content{
+    max-height: 64%;
+  }
+  .index-content{
+    z-index:12;
+  }
+  .height-max{
+    height: 100%;
+  }
+  .quantity-detail{
+    font-size: 22px !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+  }
+  .style-back{
+    margin-right: 20px;
+  }
+  .button-div {
+    float: right;
+    margin-right: 20px;
+}
