@@ -24,7 +24,7 @@
         <ion-list v-if="appPages[selectedIndex].code != 'qr'">
           <TableItem id="main-content" v-for="(data, pos) in tableData" :key="pos" :table-data="data"></TableItem>
         </ion-list>
-        <qrcode-stream v-else @init="onInit"></qrcode-stream>
+        <qrcode-stream v-else @init="onInit" @decode="onDecode"></qrcode-stream>
       </ion-split-pane>
       </ion-content>
   </template>
