@@ -65,8 +65,8 @@ export default defineComponent({
          },
          acceptClick:function(){
             HTTP.post('/api/actualizarEstado', {
-                id: this.idRestaurant,
-                num: this.numTable,
+                id: this.$root.idRestaurant,
+                num: this.$root.numTable,
                 status: "3"
             })
             .then(response => {
