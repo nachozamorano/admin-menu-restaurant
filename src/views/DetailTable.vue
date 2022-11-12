@@ -18,8 +18,8 @@
         </ion-list>
     </ion-content>
     <div class="button-div">
-        <ion-button @click="cancelClick" color="light"  class="style-back">Cancelar</ion-button>
-        <ion-button @click="acceptClick" color="success">Aceptar y Confirmar</ion-button>
+        <ion-button @click="cancelClick()" color="light"  class="style-back">Cancelar</ion-button>
+        <ion-button @click="acceptClick()" color="success">Aceptar y Confirmar</ion-button>
     </div>
 </template>
 
