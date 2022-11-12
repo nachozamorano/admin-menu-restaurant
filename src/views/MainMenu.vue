@@ -87,14 +87,21 @@
           mdIcon: chevronForwardOutline
         },
         {
-          title: 'Ocupados',
+          title: 'Tomar Pedido',
           code: "pend",
-          url: '/folder/Ocupados',
+          url: '/folder/Tomar pedido',
           iosIcon: chevronForwardOutline,
           mdIcon: chevronForwardOutline
         },
         {
-          title: 'Tomar Pedido QR',
+          title: 'Pagar',
+          code: "pay",
+          url: '/folder/Pagar',
+          iosIcon: chevronForwardOutline,
+          mdIcon: chevronForwardOutline
+        },
+        {
+          title: 'Capturar QR',
           code: "qr",
           url: '/folder/Qr',
           iosIcon: qrCodeOutline,
@@ -147,7 +154,7 @@
         },
         getTable: function (code) {
             this.tableData=[];
-            HTTP.post('/api/mesas', {
+            HTTP.post('/api/mesa', {
               id: "1",
               code: this.appPages[code].code
             })
