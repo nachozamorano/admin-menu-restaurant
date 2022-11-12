@@ -70,22 +70,11 @@ export default defineComponent({
                 status: "3"
             })
             .then(response => {
-              for (const key in response.data) {
-                if (Object.hasOwnProperty.call(response.data, key)) {
-                  const element = response.data[key];
-                  this.tableData.push({
-                    webId:element.IdMesa,
-                    CantPersonas:element.cantPersona,
-                    numero:element.numero,
-                    nombreEstado:element.nombreEstado
-                  })
-                }
-              }
+                this.$root.step = "main";
             })
             .catch(e => {
               this.errors.push(e)
             })
-            this.$root.step = "main";
          }
     }
 })
