@@ -64,7 +64,7 @@ export default defineComponent({
             this.$root.step = "main";
          },
          acceptClick:function(){
-            HTTP.post('/api/actualizarEstado', {
+            HTTP.post('/api/mesa/actualizarEstado', {
                 id: this.$root.idRestaurant,
                 num: this.$root.numTable,
                 status: "3"
