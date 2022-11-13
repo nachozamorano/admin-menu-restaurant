@@ -1,6 +1,6 @@
 <template>
   <ion-app>
-    <main-menu v-show="step == 'main'"></main-menu>
+    <main-menu ref ="mainMenu" v-show="step == 'main'"></main-menu>
     <div v-if="step == 'detail'" class="height-max">
       <detail-table :items-list="parseJson()"></detail-table>
     </div>
@@ -27,6 +27,13 @@ export default defineComponent({
       idRestaurant:"1",
       numTable:""
       }
+  },
+  watch:{
+    step:function(val){
+      if(val == "main"){
+        this.$refs.mainMenu.this.selectedIndex = 0;
+      }
+    }
   },
   methods:{
     parseJson:function(){
