@@ -31,7 +31,7 @@ export default defineComponent({
   watch:{
     step:function(val){
       if(val == "main"){
-        this.$refs.mainMenu.this.selectedIndex = 0;
+        this.$refs.mainMenu.selectedIndex = 0;
       }
     }
   },
