@@ -141,6 +141,9 @@ ion-menu ion-content {
   .mt-40{
     margin-top: 40px !important;
   }
+  .display-inline-table{
+    display: inline-table;
+  }
   .display-block{
     display: block !important;
   }
@@ -184,8 +187,8 @@ ion-menu ion-content {
     font-size: 30px;
   }
   .ion-label-list{
-    min-width: 210px;
-    max-width: 210px;
+    min-width: 200px;
+    max-width: 200px;
   }
   .size-content{
     max-height: 64%;

@@ -7,7 +7,7 @@
     <ion-content class="ion-padding size-content index-content height-max">
         <ion-list v-for="(itm, i) in itemsList" :key="i">
         <ion-item-divider class="item-divider-list">
-            <ion-label class="mr-3 quantity-detail">{{itm.quantity}}</ion-label>
+            <ion-label class="mr-3 quantity-detail display-inline-table">{{itm.quantity}}</ion-label>
             <ion-label class="ion-label-list">
             <h1 size="large" class="title-sub">{{itm.name}}</h1>
             <p class="text-description">{{itm.description}}</p>
