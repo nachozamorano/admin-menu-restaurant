@@ -18,8 +18,8 @@
         </ion-list>
     </ion-content>
     <div class="button-div">
-        <ion-button @click="cancelClick()" color="light"  class="style-back">Cancelar</ion-button>
-        <ion-button @click="acceptClick()" color="success">Aceptar y Confirmar</ion-button>
+        <ion-button @click="actionClick('5')" color="light"  class="style-back">Cancelar</ion-button>
+        <ion-button @click="actionClick('3')" color="success">Aceptar y Confirmar</ion-button>
     </div>
 </template>
 
@@ -60,14 +60,11 @@ export default defineComponent({
             }
             return number.toLocaleString('es-CL', { style: 'currency', currency: this.stepInfo.typeMoney });
          },
-         cancelClick:function(){
-            this.$root.step = "main";
-         },
-         acceptClick:function(){
+         actionClick:function(status){
             HTTP.post('/api/mesa/actualizarEstado', {
                 id: this.$root.idRestaurant,
                 num: this.$root.numTable,
-                status: "3"
+                status: status
             })
             .then(response => {
                 this.$root.step = "main";
