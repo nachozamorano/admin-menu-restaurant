@@ -142,7 +142,7 @@ ion-menu ion-content {
     margin-top: 40px !important;
   }
   .display-inline-table{
-    display: inline-table;
+    display: inline-table !important;
   }
   .display-block{
     display: block !important;
