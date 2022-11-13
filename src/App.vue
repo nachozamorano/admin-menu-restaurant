@@ -1,9 +1,12 @@
 <template>
+  <ion-app v-show="step == 'main' && !isBlocked">
+    <main-menu ref ="mainMenu"></main-menu>
+  </ion-app>
   <ion-app>
-    <main-menu ref ="mainMenu" v-show="step == 'main'"></main-menu>
-    <div v-if="step == 'detail'" class="height-max">
+    <div v-if="step == 'detail' && !isBlocked" class="height-max">
       <detail-table :items-list="parseJson()"></detail-table>
     </div>
+    <page-blocked v-else-if="isBlocked" ref="blocked"></page-blocked>
   </ion-app>
 </template>
 
@@ -11,6 +14,8 @@
 import { defineComponent, ref } from 'vue';
 import { IonApp} from '@ionic/vue'; 
 import DetailTable from './views/DetailTable.vue';
+import pageBlocked from './views/PageBlocked.vue';
+import { HTTP } from './js/http-common';
 import MainMenu from './views/MainMenu.vue';
 
 export default defineComponent({
@@ -18,16 +23,36 @@ export default defineComponent({
   components: {
     MainMenu,
     DetailTable,
-    IonApp
+    IonApp,
+    pageBlocked
   },
   data(){
     return{
       step:'main',
       decodedString:"",
       idRestaurant:"1",
-      numTable:""
+      numTable:"",
+      isBlocked:false
       }
   },
+  created: function(){
+    HTTP.post('/api/restaurant', {
+      id: this.idRestaurant
+    })
+    .then(response => {
+      if(response.data.length != 0){
+        var status = response.data[0].FK_idStatus;
+        if(status == 1){
+          this.isBlocked = false;
+        }else if(status == 2){
+          this.isBlocked = true;
+        }
+      }
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },  
   watch:{
     step:function(val){
       if(val == "main"){

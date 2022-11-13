@@ -22,6 +22,9 @@
             </ion-list>
           </ion-menu>
         <ion-list v-if="appPages[selectedIndex].code != 'qr'">
+          <div class="mr-2 refresh-right-icon">
+            <ion-icon slot="icon-only" class="cursor-pointer" :icon="refreshOutline" @click="getTable(selectedIndex)"></ion-icon>
+          </div>
           <TableItem id="main-content" v-for="(data, pos) in tableData" :key="pos" :table-data="data"></TableItem>
         </ion-list>
         <qrcode-stream v-else @init="onInit" @decode="onDecode"></qrcode-stream>
@@ -35,7 +38,7 @@
   import { QrcodeStream } from 'vue3-qrcode-reader'
   import { useRoute } from 'vue-router';
   import { HTTP } from '../js/http-common';
-  import { chevronForwardOutline , qrCodeOutline} from 'ionicons/icons';
+  import { chevronForwardOutline , qrCodeOutline, refreshOutline} from 'ionicons/icons';
   import TableItem from './Table.vue';
   
   export default defineComponent({
@@ -115,6 +118,7 @@
         selectedIndex,
         appPages, 
         chevronForwardOutline,
+        refreshOutline,
         isSelected: (url: string) => url === route.path ? 'selected' : ''
       }
     },

@@ -210,4 +210,26 @@ ion-menu ion-content {
   .button-div {
     float: right;
     margin-right: 20px;
-}
+  }
+  .refresh-right-icon{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .cursor-pointer{
+    cursor: pointer;
+  }
+  .title-step{
+    font-weight: 900;
+    font-size: 30px;
+  }
+  .max-size-icon{
+    max-width: 150px;
+  }
+  .margin-bottom-alert{
+    margin-bottom: 60px;
+  }
+  .center{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
