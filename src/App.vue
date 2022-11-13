@@ -1,7 +1,7 @@
 <template>
   <ion-app>
-    <main-menu v-if="step == 'main'"></main-menu>
-    <div v-else-if="step == 'detail'" class="height-max">
+    <main-menu v-show="step == 'main'"></main-menu>
+    <div v-if="step == 'detail'" class="height-max">
       <detail-table :items-list="parseJson()"></detail-table>
     </div>
   </ion-app>
