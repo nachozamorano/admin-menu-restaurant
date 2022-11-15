@@ -2,7 +2,7 @@
   <ion-app v-show="step == 'main' && !isBlocked">
     <main-menu ref ="mainMenu"></main-menu>
   </ion-app>
-  <ion-app>
+  <ion-app v-if="step!='main' || isBlocked">
     <div v-if="step == 'detail' && !isBlocked" class="height-max">
       <detail-table :items-list="parseJson()"></detail-table>
     </div>
