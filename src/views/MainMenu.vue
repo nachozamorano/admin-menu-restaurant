@@ -150,6 +150,7 @@
         },
         onDecode(decodedString) {
             this.$root.decodedString = decodedString;
+            this.$root.itemList = this.$root.parseJson();
             this.$root.step = "detail";
             
         },

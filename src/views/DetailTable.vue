@@ -38,6 +38,10 @@ export default defineComponent({
             default: function () {
                 return {}
             }
+        },
+        'total-amount':{
+            type: Number,
+            default: 0,
         }
     },
     data(){
@@ -65,6 +69,24 @@ export default defineComponent({
                 id: this.$root.idRestaurant,
                 num: this.$root.numTable,
                 status: status
+            })
+            .then(response => {
+                this.$root.step = "main";
+            })
+            .catch(e => {
+              this.errors.push(e)
+            })
+            this.addListOrder();
+         },
+         addListOrder: function(){
+            HTTP.post('/api/orden/insertar', {
+                id: this.$root.idRestaurant,
+                num: this.$root.numTable,
+                total: this.totalAmount + (this.totalAmount*0.1),
+                rut:"189066937",
+                nombre:"Andrea",
+                subTotal: this.totalAmount,
+                listOrder: this.listOrder
             })
             .then(response => {
                 this.$root.step = "main";
